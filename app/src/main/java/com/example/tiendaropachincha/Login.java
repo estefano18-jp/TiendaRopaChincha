@@ -14,10 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -69,14 +67,15 @@ public class Login extends AppCompatActivity {
             String contraseña = params[1];
 
             try {
-                URL url = new URL("http://192.168.0.107/wstienda/app/services/api.php");
+                // Asegúrate de que la URL sea la correcta para el login
+                URL url = new URL("http://192.168.0.107/wstienda/app/services/api_login.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestProperty("Accept", "application/json");
 
-                // Cambiar la forma de envío de datos
+                // Preparar los datos a enviar
                 String postData =
                         "usuario=" + URLEncoder.encode(usuario, "UTF-8") +
                                 "&contraseña=" + URLEncoder.encode(contraseña, "UTF-8");
@@ -88,14 +87,12 @@ public class Login extends AppCompatActivity {
                     os.write(postDataBytes);
                 }
 
-                // Leer código de respuesta
+                // Leer respuesta del servidor
                 int responseCode = conn.getResponseCode();
                 Log.d("LoginTask", "Response Code: " + responseCode);
 
-                // Leer respuesta del servidor
                 BufferedReader reader = new BufferedReader(
                         new InputStreamReader(conn.getInputStream(), "UTF-8"));
-
                 StringBuilder response = new StringBuilder();
                 String line;
                 while ((line = reader.readLine()) != null) {
@@ -104,7 +101,6 @@ public class Login extends AppCompatActivity {
                 reader.close();
 
                 Log.d("LoginTask", "Server Response: " + response.toString());
-
                 return response.toString();
 
             } catch (Exception e) {
@@ -122,11 +118,8 @@ public class Login extends AppCompatActivity {
 
             try {
                 JSONObject jsonResponse = new JSONObject(result);
-
-                // Imprimir toda la respuesta para depuración
                 Log.d("LoginTask", "Full JSON Response: " + jsonResponse.toString());
 
-                // Verificar la estructura exacta de la respuesta
                 boolean success = jsonResponse.optBoolean("success", false);
                 String message = jsonResponse.optString("message", "Error desconocido");
 
