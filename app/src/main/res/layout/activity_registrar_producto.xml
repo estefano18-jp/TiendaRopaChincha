@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="#F5F5F5"
+    tools:context=".RegistrarProductoActivity">
+
+    <!-- Campo para Tipo de Producto -->
+    <EditText
+        android:id="@+id/editTextTipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tipo"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:background="@android:drawable/editbox_background"
+        android:textColorHint="#888888" />
+
+    <!-- Campo para Género -->
+    <EditText
+        android:id="@+id/editTextGenero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Género"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:background="@android:drawable/editbox_background"
+        android:textColorHint="#888888" />
+
+    <!-- Campo para Talla -->
+    <EditText
+        android:id="@+id/editTextTalla"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Talla"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:background="@android:drawable/editbox_background"
+        android:textColorHint="#888888" />
+
+    <!-- Campo para Precio -->
+    <EditText
+        android:id="@+id/editTextPrecio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Precio"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:background="@android:drawable/editbox_background"
+        android:textColorHint="#888888" />
+
+    <!-- Espacio entre el último campo y el botón -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <!-- Botón para Registrar Producto -->
+    <Button
+        android:id="@+id/buttonRegistrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrar Producto"
+        android:padding="12dp"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>
